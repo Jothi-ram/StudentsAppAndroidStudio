@@ -62,7 +62,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:alpha="0.5"
-        android:text="Welcome to Your Dashboard!"
+        android:text="Welcome to Your Dashboarded!"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
