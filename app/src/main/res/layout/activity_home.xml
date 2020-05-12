@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:text="Jothi Ram"
+            android:text="Name"
             android:textColor="#FFF"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/rollno"
-            android:text="18MX106"
+            android:text="Roll No"
             android:textColor="#FFF"
             android:textStyle="normal"
             android:textSize="16sp"
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Jothi Ram"
+            android:text="Name"
             android:textColor="#181C34"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -140,7 +140,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="66dp"
             android:gravity="center"
-            android:text="18MX106"
+            android:text="RollNo"
             android:textColor="#181C34"
             android:textSize="16sp"
             android:textStyle="normal" />
@@ -156,7 +156,9 @@
             android:textSize="20sp"
             android:gravity="left"
             android:layout_marginTop="152dp"
-            android:layout_marginStart="44dp" />
+            android:layout_marginStart="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="44dp" />
 
 
         <TextView
@@ -186,6 +188,7 @@
 
 
                 <ImageView
+                    android:id="@+id/marks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

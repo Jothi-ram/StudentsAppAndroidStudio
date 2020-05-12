@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,40 +23,53 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
 
     DatabaseReference dbRef;
-    String dbUser,dbPassword;
+    String rollNo;
+    EditText userId,userPassword;
+    SharedPreferences logInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        final EditText userId = (EditText) findViewById(R.id.editText);
-        final EditText userPassword = (EditText) findViewById(R.id.editText2);
+        userId = (EditText) findViewById(R.id.editText);
+        userPassword = (EditText) findViewById(R.id.editText2);
         Button login = (Button) findViewById(R.id.button);
         dbRef = FirebaseDatabase.getInstance().getReference();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String user = userId.getText().toString();
+                rollNo = userId.getText().toString();
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(user))
+                        if(dataSnapshot.hasChild(rollNo))
                         {
 
-                            String password  = dataSnapshot.child(user+"/password").getValue(String.class);
-                            String name = dataSnapshot.child(user+"/name").getValue(String.class);
+                            String password  = dataSnapshot.child(rollNo+"/password").getValue(String.class);
+                            String name = dataSnapshot.child(rollNo+"/name").getValue(String.class);
+                            String imageUrl= dataSnapshot.child(rollNo+"/imageLink").getValue(String.class);
+                            assert password != null;
                             if(password.equals(userPassword.getText().toString())) {
-                                Intent launchActivity2 = new Intent(LoginActivity.this, home.class);
-                                startActivity(launchActivity2);
+
+                                logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
+                                logInfo.edit().putString("RollNo",rollNo).apply();
+                                logInfo.edit().putBoolean("isLogged", true).apply();
+                                logInfo.edit().putString("name",name).apply();
+                                logInfo.edit().putString("imageUrl",imageUrl).apply();
+
+                                Intent home = new Intent(LoginActivity.this, home.class);
+                                startActivity(home);
                             }
                                 //Toast.makeText(getApplicationContext(),"Welcome "+name,Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(getApplicationContext(),"Invalid password",Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(getApplicationContext(), "Invalid password", Toast.LENGTH_SHORT).show();
+                                userPassword.setText("");
+                            }
                         }
                         else
                         {
                             Toast.makeText(getApplicationContext(),"Invalid User Id ",Toast.LENGTH_SHORT).show();
-
+                            userId.setText("");
                         }
                     }
 
