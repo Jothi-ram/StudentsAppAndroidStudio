@@ -3,8 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
-    android:id="@+id/maincontent1">
+    >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/maincontent1">
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
@@ -12,6 +16,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
+        android:textColor=""
         android:layout_marginStart="20dp" />
     <TextView
         android:id="@+id/title1"
@@ -133,5 +138,5 @@
         android:textSize="20sp"
         android:visibility="gone"
         android:layout_toEndOf="@+id/title1" />
-
+    </RelativeLayout>
 </RelativeLayout>
