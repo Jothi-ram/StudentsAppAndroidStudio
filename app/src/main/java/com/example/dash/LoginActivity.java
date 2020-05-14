@@ -33,12 +33,13 @@ public class LoginActivity extends AppCompatActivity {
         userId = (EditText) findViewById(R.id.editText);
         userPassword = (EditText) findViewById(R.id.editText2);
         Button login = (Button) findViewById(R.id.button);
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rollNo = userId.getText().toString();
+                dbRef = FirebaseDatabase.getInstance().getReference().child("Student/"+rollNo.substring(0,4));
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
