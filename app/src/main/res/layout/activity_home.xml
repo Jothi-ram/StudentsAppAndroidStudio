@@ -107,7 +107,7 @@
 
 
     <RelativeLayout
-        android:translationX="-280dp"
+        android:translationX="0dp"
         android:id="@+id/maincontent"
         android:layout_width="416dp"
         android:layout_height="match_parent">
