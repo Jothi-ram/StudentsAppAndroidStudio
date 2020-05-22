@@ -43,8 +43,8 @@ public class MarkActivity extends AppCompatActivity {
     RelativeLayout maincontent;
     LinearLayout mainmenu;
     Animation fromtop,frombottom;
-    ImageView userpicbig,marks;
-    TextView name,rollno,nameHome,rollNoHome;
+    ImageView userpicbig;
+    TextView name,rollno;
     String rollNo,userName,imageURL;
     SharedPreferences logInfo;
 

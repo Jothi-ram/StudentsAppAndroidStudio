@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("DataBase Error ",databaseError.toException().toString());
+//                        Log.d("DataBase Error ",databaseError.toException().toString());
                     }
 
                 });

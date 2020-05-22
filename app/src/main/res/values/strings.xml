@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PSG Ecampus</string>
+    <string name="app_name">Dash</string>
     <string-array name="selected">
         <item>Select</item>
         <item>CA Test</item>
