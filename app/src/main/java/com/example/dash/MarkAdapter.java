@@ -63,7 +63,6 @@ public class MarkAdapter extends RecyclerView.Adapter<MarkAdapter.ViewHolder> {
 //        System.out.println(data);
 //        key.setText(data.get(0));
 //        value.setText(data.get(1));
-
     }
 
     @Override
