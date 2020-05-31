@@ -1,6 +1,7 @@
 package com.example.dash;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class MarkAdapter extends RecyclerView.Adapter<MarkAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MarkAdapter.ViewHolder viewHolder, int position) {
 //        System.out.println(dataList.size());
+
         ArrayList<String> data = dataList.get(position);
         int j=0;
         for (int i = 0; i <data.size() ; i+=2) {

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,18 +33,18 @@ public class CircularActivity extends AppCompatActivity {
     DatabaseReference dbRef;
     CircularAdaper circularAdapter;
     ProgressDialog progressDialog;
-
+    Button btnmenu1;
+    String rollNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circular);
 
         logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
-        String rollNo = logInfo.getString("RollNo","Error");
+         rollNo = logInfo.getString("RollNo","Error");
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("LoAdInG...");
-
+        progressDialog.setTitle("Loading...");
         recyclerView = findViewById(R.id.circularView);
         circularAdapter = new CircularAdaper(dataList);
         recyclerView.setAdapter(circularAdapter);
@@ -65,6 +67,18 @@ public class CircularActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        //Button
+        btnmenu1 =  findViewById(R.id.btnmenu1);
+//        rollNoHome = findViewById(R.id.rollnohome);
+
+        btnmenu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mark = new Intent(CircularActivity.this,home.class);
+                mark.putExtra("rollNo",rollNo);
+                startActivity(mark);
             }
         });
 
