@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,6 +96,15 @@ public class home extends AppCompatActivity {
                 dbRef.child(rollNo.substring(0,4)+"/"+rollNo+"/TokenId").setValue(null);
                 logInfo.edit().clear().apply();
                 startActivity(new Intent(home.this,FirstActivity.class));
+            }
+        });
+
+        ecamp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent viewIntent =
+                        new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://ecampus.psgtech.ac.in/studzone2/"));
+                startActivity(viewIntent);
             }
         });
 

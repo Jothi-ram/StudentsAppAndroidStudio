@@ -13,11 +13,10 @@
         <activity android:name=".CircularActivity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".MarkActivity" />
-        <activity android:name=".home" />
-        <activity android:name=".FirstActivity">
+        <activity android:name=".FirstActivity" />
+        <activity android:name=".home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
