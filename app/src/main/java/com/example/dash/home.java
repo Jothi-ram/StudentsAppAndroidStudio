@@ -32,11 +32,11 @@ import com.squareup.picasso.Picasso;
 
 public class home extends AppCompatActivity {
 
-    Button btnmenu,circular,timetable,ecamp,so;
+    Button btnmenu,circular,ecamp,so;
     RelativeLayout maincontent;
     LinearLayout mainmenu;
     Animation fromtop,frombottom;
-    ImageView userpicbig,marks,attendance,circularImage,resultImage;
+    ImageView userpicbig,marks,attendance,circularImage,ctt,resultImage;
     TextView name,rollno,nameHome,rollNoHome;
     String rollNo,userName,imageURL;
     SharedPreferences logInfo;
@@ -50,7 +50,7 @@ public class home extends AppCompatActivity {
         //Button
         btnmenu =  findViewById(R.id.btnmenu);
         circular =  findViewById(R.id.circular);
-        timetable =  findViewById(R.id.timetable);
+
         ecamp =  findViewById(R.id.ecamp);
         so =  findViewById(R.id.so);
 
@@ -66,6 +66,7 @@ public class home extends AppCompatActivity {
         attendance = findViewById(R.id.attendance);
         circularImage = findViewById(R.id.circularImage);
         resultImage = findViewById(R.id.result_image);
+        ctt=findViewById(R.id.ctt);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Student");
         logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
@@ -117,7 +118,7 @@ public class home extends AppCompatActivity {
                 mainmenu.animate().translationX(0);
 
                 circular.startAnimation(frombottom);
-                timetable.startAnimation(frombottom);
+
                 ecamp.startAnimation(frombottom);
                 so.startAnimation(frombottom);
 
@@ -136,6 +137,14 @@ public class home extends AppCompatActivity {
         });
 
         marks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mark = new Intent(home.this,MarkActivity.class);
+                startActivity(mark);
+            }
+        });
+
+        ctt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mark = new Intent(home.this,MarkActivity.class);
