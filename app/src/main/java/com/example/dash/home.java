@@ -1,8 +1,5 @@
 package com.example.dash;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -19,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +41,7 @@ public class home extends AppCompatActivity {
     SharedPreferences logInfo;
     DatabaseReference dbRef;
     String TAG ="Home";
+    Boolean isLogged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +73,10 @@ public class home extends AppCompatActivity {
         userName =  logInfo.getString("name","Error");
         rollNo = logInfo.getString("RollNo","Error");
         imageURL = logInfo.getString("imageUrl","Error");
+        isLogged = logInfo.getBoolean("isLogged",false);
+        if(!isLogged)
+            startActivity(new Intent(home.this,FirstActivity.class));
+
 
 //        dbRef = FirebaseDatabase.getInstance().getReference().child(rollNo);
 
@@ -147,7 +151,7 @@ public class home extends AppCompatActivity {
         ctt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mark = new Intent(home.this,MarkActivity.class);
+                Intent mark = new Intent(home.this,class_time_table.class);
                 startActivity(mark);
             }
         });
