@@ -33,18 +33,29 @@ public class CircularActivity extends AppCompatActivity {
     DatabaseReference dbRef;
     CircularAdaper circularAdapter;
     ProgressDialog progressDialog;
-    Button btnmenu1;
-    String rollNo;
+    Button back3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circular);
 
         logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
-         rollNo = logInfo.getString("RollNo","Error");
+        String rollNo = logInfo.getString("RollNo","Error");
+
+        back3 =  findViewById(R.id.back3);
+//        rollNoHome = findViewById(R.id.rollnohome);
+
+        back3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mark = new Intent(CircularActivity.this,home.class);
+                startActivity(mark);
+            }
+        });
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading...");
+        progressDialog.setTitle("LoAdInG...");
+
         recyclerView = findViewById(R.id.circularView);
         circularAdapter = new CircularAdaper(dataList);
         recyclerView.setAdapter(circularAdapter);
@@ -67,18 +78,6 @@ public class CircularActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-        //Button
-        btnmenu1 =  findViewById(R.id.btnmenu1);
-//        rollNoHome = findViewById(R.id.rollnohome);
-
-        btnmenu1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mark = new Intent(CircularActivity.this,home.class);
-                mark.putExtra("rollNo",rollNo);
-                startActivity(mark);
             }
         });
 
