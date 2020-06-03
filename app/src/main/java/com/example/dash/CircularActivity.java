@@ -54,7 +54,7 @@ public class CircularActivity extends AppCompatActivity {
         });
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("LoAdInG...");
+        progressDialog.setTitle("Loading...");
 
         recyclerView = findViewById(R.id.circularView);
         circularAdapter = new CircularAdaper(dataList);

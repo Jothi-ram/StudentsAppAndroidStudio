@@ -48,7 +48,7 @@ public class TotalMarkActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.totalMarks_recyclerview);
         semester = findViewById(R.id.semester);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("LoAdInG...");
+        progressDialog.setTitle("Loading...");
         logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
         rollNo = logInfo.getString("RollNo","Error");
 
