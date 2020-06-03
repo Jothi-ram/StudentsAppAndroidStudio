@@ -32,25 +32,24 @@ public class TestTimeTable extends AppCompatActivity {
     ArrayList<String> timeTableList = new ArrayList<>();
     ArrayAdapter timeTableAdapter;
     String rollNo;
-    Button zack;
     DatabaseReference dbRef;
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_time_table);
 
-        zack = findViewById(R.id.zack);
-        zack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mark = new Intent(TestTimeTable.this,CircularActivity.class);
-                startActivity(mark);
-            }
-        });
-
         timeTable = findViewById(R.id.test_time_table);
         img_timeTable = findViewById(R.id.test_image);
 
+        back= findViewById(R.id.back6);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mark = new Intent(TestTimeTable.this,home.class);
+                startActivity(mark);
+            }
+        });
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading...");
         progressDialog.show();
@@ -61,8 +60,6 @@ public class TestTimeTable extends AppCompatActivity {
         timeTableAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeTable.setAdapter(timeTableAdapter);
         timeTable.setOnItemSelectedListener(new DisplayTimeTable());
-
-
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("TestTimeTable/"+rollNo.substring(0,4));
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
