@@ -35,7 +35,7 @@ public class home extends AppCompatActivity {
     RelativeLayout maincontent;
     LinearLayout mainmenu;
     Animation fromtop,frombottom;
-    ImageView userpicbig,marks,attendance,circularImage,ctt,resultImage;
+    ImageView userpicbig,marks,attendance,circularImage,ctt,resultImage,testTimeTableImage;
     TextView name,rollno,nameHome,rollNoHome;
     String rollNo,userName,imageURL;
     SharedPreferences logInfo;
@@ -67,6 +67,7 @@ public class home extends AppCompatActivity {
         circularImage = findViewById(R.id.circularImage);
         resultImage = findViewById(R.id.result_image);
         ctt=findViewById(R.id.ctt);
+        testTimeTableImage = findViewById(R.id.test_time_table_image);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Student");
         logInfo = getSharedPreferences("LogInfo",MODE_PRIVATE);
@@ -170,6 +171,13 @@ public class home extends AppCompatActivity {
             }
         });
 
+        testTimeTableImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(home.this,TestTimeTable.class));
+            }
+        });
+
         changepass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,20 +208,31 @@ public class home extends AppCompatActivity {
             notificationManager.createNotificationChannel(new NotificationChannel(channelId,
                     channelName, NotificationManager.IMPORTANCE_LOW));
         }
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
+        if(!rollNo.equals("Error")) {
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "getInstanceId failed", task.getException());
+                                return;
+                            }
 
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-                        dbRef.child(rollNo.substring(0,4)+"/"+rollNo+"/TokenId").setValue(token);
-                    }
-                });
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+                            dbRef.child(rollNo.substring(0, 4) + "/" + rollNo + "/TokenId").setValue(token);
+                        }
+                    });
+        }
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+//        System.out.println("Login onRestart invoked");
+        //Checking previous Login
+        if(!logInfo.getBoolean("isLogged",false)){
+            finishAffinity();
+        }
     }
 
 }

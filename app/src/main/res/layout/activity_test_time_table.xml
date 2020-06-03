@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestTimeTable">
+
+    <Button
+        android:id="@+id/zack"
+        android:layout_width="115dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginLeft="-20dp"
+        android:background="@drawable/left" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Time Table"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:textSize="29sp"/>
+    <Spinner
+        android:id="@+id/test_time_table"
+        android:layout_width="409dp"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_height="35dp"
+        android:layout_marginTop="90dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <ImageView
+        android:id="@+id/test_image"
+        android:layout_below="@id/test_time_table"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
